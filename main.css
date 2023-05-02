@@ -149,3 +149,30 @@ body {
 }
 
 /* Wind */
+.wind {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.wind-direction {
+    font-size: 2.5em;
+}
+.wind-speed {
+    font-size: 1.2em;
+}
+
+/* Humidity & Pressure */
+.humidity-value, .pressure-value {
+    margin-top: 0.5em;
+}
+.humidity-value {
+    font-size: 2.5em;
+}
+.pressure-value {
+    text-align: center;
+    font-size: 2.5em;
+}
+.pressure-unit {
+    text-align: center;
+    font-size: 0.8em;
+}

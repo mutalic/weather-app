@@ -17,7 +17,7 @@ const weatherAPI = {
         /* Destructure API Data */
         const { name } = data;
         const { icon, description } = data.weather[0];
-        const { temp, humidity, temp_min, temp_max} = data.main;
+        const { temp, humidity, pressure, temp_min, temp_max} = data.main;
         const { speed, deg } = data.wind;
         const { sunrise, sunset } = data.sys;
         
@@ -29,18 +29,51 @@ const weatherAPI = {
         document.querySelector('.high').textContent = Math.round(temp_max);
         document.querySelector('.low').textContent = Math.round(temp_min);
         /* .weather__additional */
-        // Wind
+        /* Wind */
+        // Wind Direction
+        const windDirection = ((deg) => {
+            if ((deg >= 337.5 && deg < 360) || (deg >= 0 && deg < 22.5)) {
+                return "N";
+            } else if (deg >= 22.5 && deg < 67.5) {
+                return "NE";
+            } else if (deg >= 67.5 && deg < 112.5) {
+                return "E";
+            } else if (deg >= 112.5 && deg < 157.5) {
+                return "SE";
+            } else if (deg >= 157.5 && deg < 202.5) {
+                return "S";
+            } else if (deg >= 202.5 && deg < 247.5) {
+                return "SW";
+            } else if (deg >= 247.5 && deg < 292.5) {
+                return "W";
+            } else {
+                return "NW";
+            }
+        })();
+        document.querySelector('.wind-direction').textContent = windDirection;
+        // Wind Speed
+        let unit = document.querySelector('.units').textContent;
+        document.querySelector('.wind-speed').textContent = unit === "Fahrenheit" ? Math.round(speed) + "mph" : Math.round(speed) + "kph";
         
-        // Sunrise & Sunset (Unix -> HH:MM)
+        /* Sunrise & Sunset (Unix -> HH:MM) */
+        // Sunrise
         let sunriseDate = new Date(sunrise * 1000);
         let sunriseHour = sunriseDate.getHours().toString().length === 1 ? "0" + sunriseDate.getHours() : sunriseDate.getHours();
         let sunriseMinutes = sunriseDate.getMinutes().toString().length === 1 ? "0" + sunriseDate.getMinutes() : sunriseDate.getMinutes();
         document.querySelector('.sunrise-time').textContent = sunriseHour + ":" + sunriseMinutes;
+
+        // Sunset
         let sunsetDate = new Date(sunset * 1000);
         let sunsetHour = sunsetDate.getHours().toString().length === 1 ? "0" + sunsetDate.getHours() : sunsetDate.getHours();
         let sunsetMinutes = sunsetDate.getMinutes().toString().length === 1 ? "0" + sunsetDate.getMinutes() : sunsetDate.getMinutes();
         document.querySelector('.sunset-time').textContent = sunsetHour + ":" + sunsetMinutes;
 
+        /* Humidity */
+        document.querySelector('.humidity-value').textContent = humidity + "%";
+
+        /* Pressure */
+        // Hg (Rounded to 2 decimal places)
+        document.querySelector('.pressure-value').textContent = (Math.round(pressure * 2.953) / 100);
     },
     convertUnits: function(){
         let city = document.querySelector('.city').textContent;
