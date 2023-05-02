@@ -90,7 +90,7 @@ body {
     width: 90%;
     padding: 0.5em 1em;
     font-size: 1em;
-
+    color:rgba(21, 121, 192, 0.8);
     text-align: center;
 }
 
@@ -102,6 +102,7 @@ body {
 .search-btn:hover, .search-btn:focus, .search-icon:hover, .search-icon:focus {
     cursor: pointer;
     transform: scale(1.05);
+    transition: all 0.3s;
 }
 
 .search-icon {
@@ -130,6 +131,7 @@ body {
 }
 .card:hover {
     transform: scale(1.05);
+    background-color: rgba(28, 156, 246, 0.4);
     transition: all 0.3s;
 }
 
@@ -175,4 +177,13 @@ body {
 .pressure-unit {
     text-align: center;
     font-size: 0.8em;
+}
+
+/* For smaller screens */
+@media screen and (max-width: 510px) {
+    .card {
+        width: 130px;
+        min-height: 130px;
+        font-size: 15px;
+    }   
 }

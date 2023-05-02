@@ -87,10 +87,18 @@ const weatherAPI = {
     }
 }
 
+/* Search Bar Event Listeners */
 document.querySelector('.search-btn').addEventListener('click', function(){
     let city = document.querySelector('.search-bar').value;
     weatherAPI.getWeather(city);
     document.querySelector('.search-bar').value = "";
+})
+document.querySelector('.search-bar').addEventListener('keydown', function(e){
+    if (e.key === "Enter") {
+        let city = document.querySelector('.search-bar').value;
+        weatherAPI.getWeather(city);
+        document.querySelector('.search-bar').value = "";
+    }
 })
 
 document.querySelector('.units').addEventListener('click', function(){
