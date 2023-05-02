@@ -13,16 +13,34 @@ const weatherAPI = {
         .then(data => this.displayWeather(data));
     },
     displayWeather: function(data){
-        const { name } = data;
-        const {icon, description} = data.weather[0];
-        const { temp, humidity, temp_min, temp_max} = data.main;
-        const {speed} = data.wind;        
 
+        /* Destructure API Data */
+        const { name } = data;
+        const { icon, description } = data.weather[0];
+        const { temp, humidity, temp_min, temp_max} = data.main;
+        const { speed, deg } = data.wind;
+        const { sunrise, sunset } = data.sys;
+        
+        /* Display Current Data */
+        /* .weather__main */
         document.querySelector('.city').textContent = name;
         document.querySelector('.description').textContent = description;
         document.querySelector('.temperature').textContent = Math.round(temp) + '°';
         document.querySelector('.high').textContent = Math.round(temp_max);
         document.querySelector('.low').textContent = Math.round(temp_min);
+        /* .weather__additional */
+        // Wind
+        
+        // Sunrise & Sunset (Unix -> HH:MM)
+        let sunriseDate = new Date(sunrise * 1000);
+        let sunriseHour = sunriseDate.getHours().toString().length === 1 ? "0" + sunriseDate.getHours() : sunriseDate.getHours();
+        let sunriseMinutes = sunriseDate.getMinutes().toString().length === 1 ? "0" + sunriseDate.getMinutes() : sunriseDate.getMinutes();
+        document.querySelector('.sunrise-time').textContent = sunriseHour + ":" + sunriseMinutes;
+        let sunsetDate = new Date(sunset * 1000);
+        let sunsetHour = sunsetDate.getHours().toString().length === 1 ? "0" + sunsetDate.getHours() : sunsetDate.getHours();
+        let sunsetMinutes = sunsetDate.getMinutes().toString().length === 1 ? "0" + sunsetDate.getMinutes() : sunsetDate.getMinutes();
+        document.querySelector('.sunset-time').textContent = sunsetHour + ":" + sunsetMinutes;
+
     },
     convertUnits: function(){
         let city = document.querySelector('.city').textContent;
