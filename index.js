@@ -20,11 +20,15 @@ const weatherAPI = {
         const { temp, humidity, pressure, temp_min, temp_max} = data.main;
         const { speed, deg } = data.wind;
         const { sunrise, sunset } = data.sys;
+
+        /* Set background image */
+        document.querySelector('body').style.background = `url(https://source.unsplash.com/1600x900/?${name})`;
         
         /* Display Current Data */
         /* .weather__main */
         document.querySelector('.city').textContent = name;
         document.querySelector('.description').textContent = description;
+        // document.querySelector('.icon').src = "https://openweathermap.org/img/wn/" + icon + ".png";
         document.querySelector('.temperature').textContent = Math.round(temp) + '°';
         document.querySelector('.high').textContent = Math.round(temp_max);
         document.querySelector('.low').textContent = Math.round(temp_min);
@@ -105,5 +109,5 @@ document.querySelector('.units').addEventListener('click', function(){
     weatherAPI.convertUnits();
 })
 
-weatherAPI.getWeather('Denver');
+weatherAPI.getWeather('denver');
 // https://api.openweathermap.org/data/2.5/weather?q=Denver&units=metric&appid=1c04d814fe5328098460e4663a46db86
