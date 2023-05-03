@@ -26,7 +26,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    background: url(./images/e-AnGx1n-gtw8-unsplash.jpg) center;
+    background: url(./images/thunderstorm.jpg) center;
 }
 
 .weather-card {
@@ -91,6 +91,8 @@ body {
     padding: 0.5em 1em;
     font-size: 1em;
     color:rgba(21, 121, 192, 0.8);
+    /* Snow */
+    /* color: rgba(43, 114, 164, 0.8); */
     text-align: center;
 }
 
@@ -123,7 +125,13 @@ body {
 .card {
     width: 150px;
     min-height: 150px;
-    background-color: rgba(28, 156, 246, 0.3);
+    /* Black and White */
+    /* background-color: rgba(28, 156, 246, 0.3); */
+    /* Everything Else */
+    background-color: rgba(88, 182, 249, 0.3);
+    /* Snow */
+    /* background-color: rgba(43, 114, 164, 0.5); */
+
     margin: 0.3em;
     padding: 1em;
 
@@ -131,7 +139,12 @@ body {
 }
 .card:hover {
     transform: scale(1.05);
-    background-color: rgba(28, 156, 246, 0.4);
+    /* Black and White */
+    /* background-color: rgba(28, 156, 246, 0.4); */
+    /* Everything Else */
+    background-color: rgba(88, 182, 249, 0.5);
+    /* Snow */
+    /* background-color: rgba(43, 114, 164, 0.8); */
     transition: all 0.3s;
 }
 
