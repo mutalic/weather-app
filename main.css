@@ -26,7 +26,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    background: url(./images/thunderstorm.jpg) center;
+    background: url(./images/snow.jpg) center;
 }
 
 .weather-card {
@@ -116,7 +116,6 @@ body {
 .weather__additional {
     width: 80%;
     margin: 1em auto;
-    /* background-color: black; */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -125,13 +124,10 @@ body {
 .card {
     width: 150px;
     min-height: 150px;
-    /* Black and White */
-    /* background-color: rgba(28, 156, 246, 0.3); */
     /* Everything Else */
     background-color: rgba(88, 182, 249, 0.3);
     /* Snow */
     /* background-color: rgba(43, 114, 164, 0.5); */
-
     margin: 0.3em;
     padding: 1em;
 
@@ -139,8 +135,6 @@ body {
 }
 .card:hover {
     transform: scale(1.05);
-    /* Black and White */
-    /* background-color: rgba(28, 156, 246, 0.4); */
     /* Everything Else */
     background-color: rgba(88, 182, 249, 0.5);
     /* Snow */
@@ -176,16 +170,14 @@ body {
     font-size: 1.2em;
 }
 
-/* Humidity & Pressure */
+/* Humidity, Pressure, AQI */
 .humidity-value, .pressure-value {
+    font-size: 2.5em;
     margin-top: 0.5em;
 }
-.humidity-value {
-    font-size: 2.5em;
-}
+
 .pressure-value {
     text-align: center;
-    font-size: 2.5em;
 }
 .pressure-unit {
     text-align: center;

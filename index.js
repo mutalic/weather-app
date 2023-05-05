@@ -12,6 +12,7 @@ const weatherAPI = {
         } else {
             unit = "imperial";
         }
+        
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${this.apiKey}`)
         .then(response => response.json())
         .then(data => this.displayWeather(data));
@@ -23,10 +24,14 @@ const weatherAPI = {
 
         /* Destructure API Data */
         const { name } = data;
+        // const { lon, lat } = data.coord;
         const { main, description } = data.weather[0];
         const { temp, humidity, pressure, temp_min, temp_max} = data.main;
         const { speed, deg } = data.wind;
         const { sunrise, sunset } = data.sys;
+
+        /* Get Air Quality */
+        // this.getAirQuality(lat, lon);
 
         /* Set Background Image */
         this.setBackground(main);
@@ -48,6 +53,26 @@ const weatherAPI = {
         document.querySelector('.pressure-value').textContent = (Math.round(pressure * 2.953) / 100);
     },
 
+    getAirQuality: function(lat, lon){
+        fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${this.apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            const { aqi } = data.list[0].main;
+            this.displayAirQuality(aqi);
+        });
+    },
+
+    displayAirQuality: function(aqi){
+        const aqiIndex = {
+            '1' : 'Good',
+            '2' : 'Fair',
+            '3' : 'Moderate',
+            '4' : 'Poor',
+            '5' : 'Very Poor'};
+
+        document.querySelector('.aqi').textContent = aqiIndex[aqi];
+    },
+
     setBackground(main) {
         let body = document.body;
         if (main === "Clear") {
@@ -58,6 +83,7 @@ const weatherAPI = {
         }
         if (main === "Snow") {
             body.style.background = "url(./images/snow.jpg) center";
+            document.querySelector('.search-bar').style.color = "rgba(43, 114, 164, 0.8)";
         }
         if (main === "Rain" || main === "Drizzle") {
             body.style.background = "url(./images/rain.jpg) center";
