@@ -88,11 +88,10 @@ body {
 }
 
 .search {
-  width: 80%;
+  position: relative;
+
   max-width: 300px;
   margin: 0 auto;
-
-  transform: translateX(1em);
 }
 
 .flex-container {
@@ -107,41 +106,22 @@ body {
   padding: 0.5em 1em;
   font-size: 1em;
   color: rgba(21, 121, 192, 0.8);
-  /* Snow */
-  /* color: rgba(43, 114, 164, 0.8); */
   text-align: center;
-}
-
-.search-btn {
-  border: none;
-  background: none;
-}
-
-.search-btn:hover,
-.search-btn:focus,
-.search-icon:hover,
-.search-icon:focus {
-  cursor: pointer;
-  transform: scale(1.05);
-  transition: all 0.3s;
-}
-
-.search-icon {
-  color: white;
-  font-size: 2em;
 }
 
 .search-match {
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 15px;
-  color: white;
+  position: absolute;
+  top: 3em;
+  z-index: 1;
 
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  width: 80%;
+  padding: 0.3em;
+
+  color: white;
   font-size: 0.8em;
   text-align: center;
-
-  width: 70%;
-  transform: translateX(2em);
-  padding: 0.3em;
 }
 
 .matched-location {
@@ -169,10 +149,7 @@ body {
 .card {
   width: 150px;
   min-height: 150px;
-  /* Everything Else */
   background-color: rgba(88, 182, 249, 0.3);
-  /* Snow */
-  /* background-color: rgba(43, 114, 164, 0.5); */
   margin: 0.3em;
   padding: 1em;
 
@@ -180,10 +157,7 @@ body {
 }
 .card:hover {
   transform: scale(1.05);
-  /* Everything Else */
   background-color: rgba(88, 182, 249, 0.5);
-  /* Snow */
-  /* background-color: rgba(43, 114, 164, 0.8); */
   transition: all 0.3s;
 }
 

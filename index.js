@@ -188,7 +188,8 @@ function searchMatch(input) {
 function displayMatched(matchedLocations) {
   let matchedLocationsEl = document.querySelector(".matched-locations");
   let searchMatchEl = document.querySelector(".search-match");
-  for (let i = 0; i < matchedLocations.length; i++) {
+  let n = matchedLocations.length > 10 ? 10 : matchedLocations.length;
+  for (let i = 0; i < n; i++) {
     // <li class="matched-location">city, state, country</li>
     let li = document.createElement("li");
     let matchedLocation = matchedLocations[i];
@@ -211,7 +212,7 @@ function clearChildrenElements(parentNode) {
   }
 }
 
-// A debounced version of searchMatch, which waits until 250ms has passed to actually invoke the function.
+// A debounced version of searchMatch, which waits until 500ms has passed from last user input to invoke the function.
 const debouncedSearchMatch = debounce(searchMatch, 500);
 
 // Debouncer
@@ -228,20 +229,11 @@ function debounce(func, wait) {
   };
 }
 
-/* Search Button Event Listeners (click, enter) */
+/* Search Event Listeners (click) */
 document.querySelector(".search-btn").addEventListener("click", function () {
   let city = document.querySelector(".search-bar").value;
   weatherAPI.getWeather(city);
   document.querySelector(".search-bar").value = "";
   clearChildrenElements(document.querySelector(".matched-locations"));
   document.querySelector(".search-match").classList.add("hide");
-});
-document.querySelector(".search-bar").addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    let city = document.querySelector(".search-bar").value;
-    weatherAPI.getWeather(city);
-    document.querySelector(".search-bar").value = "";
-    clearChildrenElements(document.querySelector(".matched-locations"));
-    document.querySelector(".search-match").classList.add("hide");
-  }
 });
