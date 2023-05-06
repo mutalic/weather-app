@@ -18,8 +18,10 @@ const weatherAPI = {
     )
       .then((response) => response.json())
       .then((data) => {
-        document.querySelector(".search-bar").value = "";
         this.displayWeather(data);
+        // Clean Up (input text field, <ul></ul> containing previous matched location list)
+        document.querySelector(".search-bar").value = "";
+        clearChildrenElements(document.querySelector(".matched-locations"));
       });
   },
 
@@ -34,9 +36,6 @@ const weatherAPI = {
     const { temp, humidity, pressure, temp_min, temp_max } = data.main;
     const { speed, deg } = data.wind;
     const { sunrise, sunset } = data.sys;
-
-    /* Get Air Quality */
-    // this.getAirQuality(lat, lon);
 
     /* Set Background Image */
     this.setBackground(main);
@@ -63,29 +62,6 @@ const weatherAPI = {
     document.querySelector(".humidity-value").textContent = humidity + "%";
     document.querySelector(".pressure-value").textContent =
       Math.round(pressure * 2.953) / 100;
-  },
-
-  getAirQuality: function (lat, lon) {
-    fetch(
-      `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${this.apiKey}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const { aqi } = data.list[0].main;
-        this.displayAirQuality(aqi);
-      });
-  },
-
-  displayAirQuality: function (aqi) {
-    const aqiIndex = {
-      1: "Good",
-      2: "Fair",
-      3: "Moderate",
-      4: "Poor",
-      5: "Very Poor",
-    };
-
-    document.querySelector(".aqi").textContent = aqiIndex[aqi];
   },
 
   setBackground(main) {
@@ -237,8 +213,6 @@ function clearChildrenElements(parentNode) {
 
 // A debounced version of searchMatch, which waits until 250ms has passed to actually invoke the function.
 const debouncedSearchMatch = debounce(searchMatch, 500);
-
-// searchMatch("Seoul");
 
 // Debouncer
 function debounce(func, wait) {
