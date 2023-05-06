@@ -27,9 +27,16 @@
         </div>
 
         <div class="search">
-            <input type="text" class="search-bar">
-            <button class="search-btn"><i class="fa-solid fa-magnifying-glass-location search-icon"></i></button>
+            <div class="flex-container">
+                <input type="text" class="search-bar">
+                <button class="search-btn"><i class="fa-solid fa-magnifying-glass-location search-icon"></i></button>
+            </div>
+            <div class="search-match hide">
+                <ul class="matched-locations">
+                </ul>
+            </div>
         </div>
+
 
         <div class="weather__additional">
             <div class="wind card">
@@ -62,6 +69,6 @@
 
     </main>
 
-    <script src="./index.js"></script>
+    <script src="./index.js" type="module"></script>
 </body>
 </html>

@@ -1,194 +1,241 @@
 html {
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 18px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 18px;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-    font-size: 1rem;
-    font-weight: 400;
-    margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+ul,
+li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 input:focus {
-    outline: none;
+  outline: none;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: url(./images/snow.jpg) center;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .weather-card {
-    padding: 2em 0;
-    min-width: 350px;
-    width: 80%;
-    max-width: 450px;
-    min-height: 500px;
+  padding: 2em 0;
+  min-width: 350px;
+  width: 80%;
+  max-width: 450px;
+  min-height: 500px;
 
-    border-radius: 30px;
+  border-radius: 30px;
 }
 
 .weather__main {
-    margin-bottom: 1em;
-    text-align: center;
+  margin-bottom: 1em;
+  text-align: center;
 }
 
 .city {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 .temperature {
-    font-size: 4.5em;
-    transform: translateX(0.2em)
+  font-size: 4.5em;
+  transform: translateX(0.2em);
 }
 .description {
-    margin: 0.3em;
-    text-transform: capitalize;
+  margin: 0.3em;
+  text-transform: capitalize;
 }
 .high-low {
-    margin: 0.3em;
+  margin: 0.3em;
 }
 
 .units {
-    border: none;
-    color: white;
-    background: transparent;
-    padding: 0.3em 0.5em;
+  border: none;
+  color: white;
+  background: transparent;
+  padding: 0.3em 0.5em;
 
-    font-size: 0.7em;
-    text-decoration: underline;
+  font-size: 0.7em;
+  text-decoration: underline;
 }
 
-.units:hover, .units:focus {
-    cursor: pointer;
+.units:hover,
+.units:focus {
+  cursor: pointer;
 }
 
 .search {
-    width: 80%;
-    max-width: 300px;
-    margin: 0 auto;
+  width: 80%;
+  max-width: 300px;
+  margin: 0 auto;
 
-    display: flex;
-    justify-content: center;
+  transform: translateX(1em);
+}
 
-    transform: translateX(1em)
+.flex-container {
+  display: flex;
+  justify-content: center;
 }
 
 .search-bar {
-    border: none;
-    border-radius: 25px;
-    width: 90%;
-    padding: 0.5em 1em;
-    font-size: 1em;
-    color:rgba(21, 121, 192, 0.8);
-    /* Snow */
-    /* color: rgba(43, 114, 164, 0.8); */
-    text-align: center;
+  border: none;
+  border-radius: 25px;
+  width: 90%;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  color: rgba(21, 121, 192, 0.8);
+  /* Snow */
+  /* color: rgba(43, 114, 164, 0.8); */
+  text-align: center;
 }
 
 .search-btn {
-    border: none;
-    background: none;
+  border: none;
+  background: none;
 }
 
-.search-btn:hover, .search-btn:focus, .search-icon:hover, .search-icon:focus {
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: all 0.3s;
+.search-btn:hover,
+.search-btn:focus,
+.search-icon:hover,
+.search-icon:focus {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.3s;
 }
 
 .search-icon {
-    color: white;
-    font-size: 2em;
+  color: white;
+  font-size: 2em;
+}
+
+.search-match {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  color: white;
+
+  font-size: 0.8em;
+  text-align: center;
+
+  width: 70%;
+  transform: translateX(2em);
+  padding: 0.3em;
+}
+
+.matched-location {
+  padding: 0.5em 0;
+  cursor: pointer;
+}
+
+.matched-location:hover {
+  text-decoration: underline;
+}
+
+.hide {
+  display: none;
 }
 
 /* Cards (wind, sunrise/sunset, humidity, pressure) */
 .weather__additional {
-    width: 80%;
-    margin: 1em auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  width: 80%;
+  margin: 1em auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .card {
-    width: 150px;
-    min-height: 150px;
-    /* Everything Else */
-    background-color: rgba(88, 182, 249, 0.3);
-    /* Snow */
-    /* background-color: rgba(43, 114, 164, 0.5); */
-    margin: 0.3em;
-    padding: 1em;
+  width: 150px;
+  min-height: 150px;
+  /* Everything Else */
+  background-color: rgba(88, 182, 249, 0.3);
+  /* Snow */
+  /* background-color: rgba(43, 114, 164, 0.5); */
+  margin: 0.3em;
+  padding: 1em;
 
-    border-radius: 15px;
+  border-radius: 15px;
 }
 .card:hover {
-    transform: scale(1.05);
-    /* Everything Else */
-    background-color: rgba(88, 182, 249, 0.5);
-    /* Snow */
-    /* background-color: rgba(43, 114, 164, 0.8); */
-    transition: all 0.3s;
+  transform: scale(1.05);
+  /* Everything Else */
+  background-color: rgba(88, 182, 249, 0.5);
+  /* Snow */
+  /* background-color: rgba(43, 114, 164, 0.8); */
+  transition: all 0.3s;
 }
 
 .card-category {
-    font-size: 0.8em;
-    margin-bottom: 0.2em;
+  font-size: 0.8em;
+  margin-bottom: 0.2em;
 }
 
 /* Sunrise/Sunset */
 .sunrise-sunset {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.sunrise-time, .sunset-time {
-    font-size: 1.5em;
+.sunrise-time,
+.sunset-time {
+  font-size: 1.5em;
 }
 
 /* Wind */
 .wind {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .wind-direction {
-    font-size: 2.5em;
+  font-size: 2.5em;
 }
 .wind-speed {
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 /* Humidity, Pressure, AQI */
-.humidity-value, .pressure-value {
-    font-size: 2.5em;
-    margin-top: 0.5em;
+.humidity-value,
+.pressure-value {
+  font-size: 2.5em;
+  margin-top: 0.5em;
 }
 
 .pressure-value {
-    text-align: center;
+  text-align: center;
 }
 .pressure-unit {
-    text-align: center;
-    font-size: 0.8em;
+  text-align: center;
+  font-size: 0.8em;
 }
 
 /* For smaller screens */
 @media screen and (max-width: 510px) {
-    .card {
-        width: 130px;
-        min-height: 130px;
-        font-size: 15px;
-    }   
+  .card {
+    width: 130px;
+    min-height: 130px;
+    font-size: 15px;
+  }
 }
