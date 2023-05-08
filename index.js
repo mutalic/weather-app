@@ -1,5 +1,5 @@
-// https://api.openweathermap.org/data/2.5/weather?q=Denver&units=metric&appid=1c04d814fe5328098460e4663a46db86
 import debounce from "./utility-functions/debounce.js";
+import unixToHoursMinutes from "./utility-functions/unixToHoursMinutes.js";
 import cityList from "./data/city.list.json" assert { type: "json" };
 
 const weatherAPI = {
@@ -57,9 +57,9 @@ const weatherAPI = {
         ? Math.round(speed) + "mph"
         : Math.round(speed) + "kph";
     document.querySelector(".sunrise-time").textContent =
-      this.unixToHoursMinutes(sunrise);
+      unixToHoursMinutes(sunrise);
     document.querySelector(".sunset-time").textContent =
-      this.unixToHoursMinutes(sunset);
+      unixToHoursMinutes(sunset);
     document.querySelector(".humidity-value").textContent = humidity + "%";
     document.querySelector(".pressure-value").textContent =
       Math.round(pressure * 2.953) / 100;
@@ -126,19 +126,6 @@ const weatherAPI = {
     } else {
       return "NW";
     }
-  },
-
-  unixToHoursMinutes(unix) {
-    let date = new Date(unix * 1000);
-    let hour =
-      date.getHours().toString().length === 1
-        ? "0" + date.getHours()
-        : date.getHours();
-    let minutes =
-      date.getMinutes().toString().length === 1
-        ? "0" + date.getMinutes()
-        : date.getMinutes();
-    return hour + ":" + minutes;
   },
 };
 
