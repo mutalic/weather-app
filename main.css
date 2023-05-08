@@ -104,24 +104,52 @@ body {
   border-radius: 25px;
   width: 90%;
   padding: 0.5em 1em;
-  font-size: 1em;
+  font-size: 0.9em;
   color: rgba(21, 121, 192, 0.8);
   text-align: center;
 }
 
+.search-error {
+  border: 2px solid rgb(122, 214, 174);
+}
+
+.search-error__text {
+  text-align: center;
+  font-size: 0.8em;
+  color: rgb(122, 214, 174);
+  margin: 0.3em 0 0 0;
+  visibility: hidden;
+}
+
 .search-match {
   position: absolute;
-  top: 3em;
+  top: 2.5em;
   z-index: 1;
 
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 15px;
-  width: 80%;
+  width: 85%;
   padding: 0.3em;
 
   color: white;
   font-size: 0.8em;
   text-align: center;
+}
+
+.search-match ::-webkit-scrollbar-track,
+.search-match ::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+.search-match ::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+}
+
+.matched-locations {
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .matched-location {

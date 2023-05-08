@@ -38,7 +38,7 @@ const weatherAPI = {
     const { sunrise, sunset } = data.sys;
 
     /* Set Background Image */
-    this.setBackground(main);
+    this.setBackgroundImage(main);
 
     /* Display Current Data */
     /* Main Information (city name, description, temperature, high and low) */
@@ -64,7 +64,7 @@ const weatherAPI = {
       Math.round(pressure * 2.953) / 100;
   },
 
-  setBackground(main) {
+  setBackgroundImage(main) {
     let body = document.body;
     if (main === "Clear") {
       body.style.background = "url(./images/clear-sky.jpg)";
@@ -151,15 +151,13 @@ document.querySelector(".search-bar").addEventListener("input", function (e) {
   let matchList = document.querySelector(".search-match");
   let userInput = e.target.value;
 
-  // Match List
-  debouncedSearchMatch(userInput);
-
-  // Show/Hide List
-  if (userInput === "") {
+  if (userInput.length > 1) {
+    debouncedSearchMatch(userInput);
+  } else {
+    document.querySelector(".search-bar").classList.remove("search-error");
+    document.querySelector(".search-error__text").style.visibility = "hidden";
     matchList.classList.add("hide");
     clearChildrenElements(document.querySelector(".matched-locations"));
-  } else {
-    matchList.classList.remove("hide");
   }
 });
 
@@ -188,7 +186,7 @@ function searchMatch(input) {
 function displayMatched(matchedLocations) {
   let matchedLocationsEl = document.querySelector(".matched-locations");
   let searchMatchEl = document.querySelector(".search-match");
-  let n = matchedLocations.length > 10 ? 10 : matchedLocations.length;
+  let n = matchedLocations.length > 30 ? 30 : matchedLocations.length;
   for (let i = 0; i < n; i++) {
     // <li class="matched-location">city, state, country</li>
     let li = document.createElement("li");
@@ -202,6 +200,17 @@ function displayMatched(matchedLocations) {
 
     // append to <ul>
     matchedLocationsEl.appendChild(li);
+  }
+
+  if (matchedLocations.length === 0) {
+    document.querySelector(".search-bar").classList.add("search-error");
+    document.querySelector(".search-error__text").style.visibility = "visible";
+    searchMatchEl.classList.add("hide");
+  } else {
+    // show list
+    document.querySelector(".search-bar").classList.remove("search-error");
+    document.querySelector(".search-error__text").style.visibility = "hidden";
+    searchMatchEl.classList.remove("hide");
   }
 }
 
@@ -228,12 +237,3 @@ function debounce(func, wait) {
     }, wait);
   };
 }
-
-/* Search Event Listeners (click) */
-document.querySelector(".search-btn").addEventListener("click", function () {
-  let city = document.querySelector(".search-bar").value;
-  weatherAPI.getWeather(city);
-  document.querySelector(".search-bar").value = "";
-  clearChildrenElements(document.querySelector(".matched-locations"));
-  document.querySelector(".search-match").classList.add("hide");
-});
