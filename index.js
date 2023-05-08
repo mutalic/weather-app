@@ -1,4 +1,5 @@
 // https://api.openweathermap.org/data/2.5/weather?q=Denver&units=metric&appid=1c04d814fe5328098460e4663a46db86
+import debounce from "./utility-functions/debounce.js";
 import cityList from "./data/city.list.json" assert { type: "json" };
 
 const weatherAPI = {
@@ -147,13 +148,13 @@ document.querySelector(".units").addEventListener("click", function () {
 });
 
 /* Seach Bar Input Event Listener */
-document.querySelector(".search-bar").addEventListener("input", function () {
-  handleInput();
+document.querySelector(".search-bar").addEventListener("input", function (e) {
+  handleSearchInput(e);
 });
 
-const handleInput = debounce(() => {
+const handleSearchInput = debounce((e) => {
   let matchList = document.querySelector(".search-match");
-  let input = document.querySelector(".search-bar").value;
+  let input = e.target.value;
 
   if (input) {
     searchMatch(input);
@@ -204,7 +205,6 @@ function displayMatched(matchedLocations) {
       searchMatchEl.classList.add("hide");
     });
 
-    // append to <ul>
     matchedLocationsEl.appendChild(li);
   }
 
@@ -225,18 +225,4 @@ function clearChildrenElements(parentNode) {
   while (parentNode.lastElementChild) {
     parentNode.removeChild(parentNode.lastElementChild);
   }
-}
-
-// Debouncer
-function debounce(func, wait) {
-  let timeoutID = null;
-  return function (...args) {
-    const context = this;
-    clearTimeout(timeoutID);
-
-    timeoutID = setTimeout(function () {
-      func.apply(context, args);
-      timeoutID = null;
-    }, wait);
-  };
 }
