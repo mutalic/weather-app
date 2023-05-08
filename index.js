@@ -1,6 +1,7 @@
 import debounce from "./utility-functions/debounce.js";
 import unixToHoursMinutes from "./utility-functions/unixToHoursMinutes.js";
 import cityList from "./data/city.list.json" assert { type: "json" };
+import clearChildrenElements from "./utility-functions/clearChildrenElements.js";
 
 const weatherAPI = {
   apiKey: "1c04d814fe5328098460e4663a46db86",
@@ -153,10 +154,7 @@ const handleSearchInput = debounce((e) => {
   }
 }, 500);
 
-/* Initial Rendering */
-weatherAPI.getWeather("Seoul");
-
-/* City List */
+/* Get matching city list */
 function searchMatch(input) {
   let currentInput = new RegExp(`${input}`, "i");
   let matchedLocations = [];
@@ -207,9 +205,5 @@ function displayMatched(matchedLocations) {
   }
 }
 
-// Clears all child nodes of a parent node
-function clearChildrenElements(parentNode) {
-  while (parentNode.lastElementChild) {
-    parentNode.removeChild(parentNode.lastElementChild);
-  }
-}
+/* Initial Rendering */
+weatherAPI.getWeather("Seoul");
