@@ -147,19 +147,23 @@ document.querySelector(".units").addEventListener("click", function () {
 });
 
 /* Seach Bar Input Event Listener */
-document.querySelector(".search-bar").addEventListener("input", function (e) {
-  let matchList = document.querySelector(".search-match");
-  let userInput = e.target.value;
+document.querySelector(".search-bar").addEventListener("input", function () {
+  handleInput();
+});
 
-  if (userInput.length > 1) {
-    debouncedSearchMatch(userInput);
+const handleInput = debounce(() => {
+  let matchList = document.querySelector(".search-match");
+  let input = document.querySelector(".search-bar").value;
+
+  if (input) {
+    searchMatch(input);
   } else {
     document.querySelector(".search-bar").classList.remove("search-error");
     document.querySelector(".search-error__text").style.visibility = "hidden";
     matchList.classList.add("hide");
     clearChildrenElements(document.querySelector(".matched-locations"));
   }
-});
+}, 500);
 
 /* Initial Rendering */
 weatherAPI.getWeather("Seoul");
@@ -168,6 +172,7 @@ weatherAPI.getWeather("Seoul");
 function searchMatch(input) {
   let currentInput = new RegExp(`${input}`, "i");
   let matchedLocations = [];
+
   for (let i = 0; i < cityList.length; i++) {
     let name = cityList[i].name;
     let state = cityList[i].state;
@@ -179,6 +184,7 @@ function searchMatch(input) {
       matchedLocations.push(location);
     }
   }
+
   clearChildrenElements(document.querySelector(".matched-locations"));
   displayMatched(matchedLocations);
 }
@@ -220,9 +226,6 @@ function clearChildrenElements(parentNode) {
     parentNode.removeChild(parentNode.lastElementChild);
   }
 }
-
-// A debounced version of searchMatch, which waits until 500ms has passed from last user input to invoke the function.
-const debouncedSearchMatch = debounce(searchMatch, 500);
 
 // Debouncer
 function debounce(func, wait) {
