@@ -105,7 +105,8 @@ body {
   width: 90%;
   padding: 0.5em 1em;
   font-size: 0.9em;
-  color: rgba(21, 121, 192, 0.8);
+  color: rgba(0, 0, 0, 0.8);
+
   text-align: center;
 }
 
