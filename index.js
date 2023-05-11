@@ -145,7 +145,7 @@ const handleSearchInput = debounce((e) => {
   let input = e.target.value;
 
   if (input) {
-    searchMatch(input);
+    filterLocation(input);
   } else {
     document.querySelector(".search-bar").classList.remove("search-error");
     document.querySelector(".search-error__text").style.visibility = "hidden";
@@ -155,8 +155,8 @@ const handleSearchInput = debounce((e) => {
 }, 500);
 
 /* Get matching city list */
-function searchMatch(input) {
-  let currentInput = new RegExp(`${input}`, "i");
+function filterLocation(input) {
+  let currentInput = new RegExp(`^${input}`, "i");
   let matchedLocations = [];
 
   for (let i = 0; i < cityList.length; i++) {
@@ -205,5 +205,5 @@ function displayMatched(matchedLocations) {
   }
 }
 
-/* Initial Rendering */
+/* Default City */
 weatherAPI.getWeather("Seoul");
