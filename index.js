@@ -40,7 +40,7 @@ const weatherAPI = {
     const { sunrise, sunset } = data.sys;
 
     /* Set Background Image */
-    this.setBackgroundImage(main);
+    this.setBackgroundImage(main, description);
 
     /* Display Current Data */
     /* Main Information (city name, description, temperature, high and low) */
@@ -66,18 +66,23 @@ const weatherAPI = {
       Math.round(pressure * 2.953) / 100;
   },
 
-  setBackgroundImage(main) {
+  setBackgroundImage(main, description) {
     let body = document.body;
     if (main === "Clear") {
       body.style.background = "url(./images/clear-sky.jpg)";
     }
     if (main === "Clouds") {
-      body.style.background = "url(./images/clouds.jpg) center";
+      if (
+        description === "overcast clouds" ||
+        description === "broken clouds"
+      ) {
+        body.style.background = "url(./images/clouds-heavy.jpg) center";
+      }
+
+      body.style.background = "url(./images/clouds-light.jpg) center";
     }
     if (main === "Snow") {
       body.style.background = "url(./images/snow.jpg) center";
-      document.querySelector(".search-bar").style.color =
-        "rgba(43, 114, 164, 0.8)";
     }
     if (main === "Rain" || main === "Drizzle") {
       body.style.background = "url(./images/rain.jpg) center";
