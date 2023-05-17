@@ -74,18 +74,18 @@ const weatherAPI = {
     if (main === "Clouds") {
       if (
         description === "overcast clouds" ||
-        description === "broken clouds"
+        description === "Broken Clouds"
       ) {
         body.style.background = "url(./images/clouds-heavy.jpg) center";
+      } else {
+        body.style.background = "url(./images/clouds-light.jpg) center";
       }
-
-      body.style.background = "url(./images/clouds-light.jpg) center";
     }
     if (main === "Snow") {
       body.style.background = "url(./images/snow.jpg) center";
     }
     if (main === "Rain" || main === "Drizzle") {
-      body.style.background = "url(./images/rain.jpg) center";
+      body.style.background = "url(./images/rain.jpg)";
     }
     if (main === "Thunderstorm" || main === "Squall" || main === "Tornado") {
       body.style.background = "url(./images/thunderstorm.jpg) center";
